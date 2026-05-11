@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Logo } from "./Logo";
 import { useTheme } from "@/lib/theme";
 import { Button } from "@/components/ui/button";
-import { Activity, Cpu, Layers, Moon, Sun, BarChart3 } from "lucide-react";
+import { Activity, Cpu, Layers, Moon, Sun, BarChart3, Gauge, Wrench } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { DeviceInfo, SessionsResponse } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -15,8 +15,10 @@ interface NavItem {
 }
 
 const NAV: NavItem[] = [
-  { href: "/", label: "Live decode", icon: Activity },
+  { href: "/", label: "EEG stream", icon: Activity },
+  { href: "/system", label: "System metrics", icon: Gauge },
   { href: "/architecture", label: "Pipeline", icon: Layers },
+  { href: "/challenges", label: "Engineering notes", icon: Wrench },
   { href: "/benchmark", label: "Benchmark", icon: BarChart3 },
 ];
 
@@ -72,7 +74,7 @@ export function Layout({ children }: { children: ReactNode }) {
           </div>
           <div className="hidden md:flex items-center gap-3 text-xs text-muted-foreground" data-testid="text-header-subtitle">
             <span className="inline-flex h-2 w-2 rounded-full bg-primary animate-pulse" />
-            Real-time neural signal decoder · synthetic dataset
+            EEG streaming + per-window CNN inference · PhysioNet eegmmidb v1.0.0
           </div>
           <div className="flex items-center gap-2">
             <DeviceBadge device={device} />

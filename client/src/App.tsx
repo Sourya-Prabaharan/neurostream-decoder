@@ -5,7 +5,9 @@ import { QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
-import Dashboard from "@/pages/dashboard";
+import EegStream from "@/pages/eeg";
+import SystemMetrics from "@/pages/system";
+import ChallengesPage from "@/pages/challenges";
 import ArchitecturePage from "@/pages/architecture";
 import BenchmarkPage from "@/pages/benchmark";
 import { Layout } from "@/components/Layout";
@@ -15,8 +17,10 @@ function AppRouter() {
   return (
     <Layout>
       <Switch>
-        <Route path="/" component={Dashboard} />
+        <Route path="/" component={EegStream} />
+        <Route path="/system" component={SystemMetrics} />
         <Route path="/architecture" component={ArchitecturePage} />
+        <Route path="/challenges" component={ChallengesPage} />
         <Route path="/benchmark" component={BenchmarkPage} />
         <Route component={NotFound} />
       </Switch>
