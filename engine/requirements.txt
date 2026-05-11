@@ -1,7 +1,23 @@
-# NeuroStream Decoder — Python engine dependencies.
+# NeuroStream Decoder Python dependencies.
 # CPU PyTorch wheel works in sandboxed environments without a GPU. For
 # CUDA acceleration, install the GPU build matching your driver from
 # https://pytorch.org (e.g. torch --index-url https://download.pytorch.org/whl/cu121).
 torch>=2.0
 numpy>=1.24
 pytest>=7
+
+# Streaming pipeline (async API + metrics).
+fastapi>=0.110
+uvicorn>=0.27
+pydantic>=2.0
+psutil>=5.9
+
+# Real EEG ingestion (PhysioNet eegmmidb EDF files).
+pyedflib>=0.1.30
+
+# Chart rendering for the streaming benchmark.
+matplotlib>=3.7
+
+# Optional: production Redis Streams path. The pipeline falls back to
+# an in-memory asyncio queue if redis is not installed or unreachable.
+redis>=5.0

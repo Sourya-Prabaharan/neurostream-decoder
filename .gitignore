@@ -21,3 +21,6 @@ data.db-journal
 
 *.log
 .DS_Store
+
+# PhysioNet EEG cache — fetched on demand by engine.scripts.fetch_eeg
+data/raw_eeg/

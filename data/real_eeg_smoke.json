@@ -1,0 +1,246 @@
+{
+  "source": "physionet eegmmidb v1.0.0",
+  "subject": 1,
+  "run": 3,
+  "dataset": {
+    "fs": 160,
+    "n_channels": 64,
+    "duration_s": 125.0,
+    "n_samples": 20000.0,
+    "n_annotations": 30,
+    "labels": [
+      "rest",
+      "left_fist",
+      "right_fist"
+    ]
+  },
+  "training": {
+    "epochs": 6,
+    "n_train_windows": 397,
+    "n_test_windows": 100,
+    "history": [
+      {
+        "epoch": 0,
+        "loss": 1.0507720189370797,
+        "train_acc": 0.44584382871536526
+      },
+      {
+        "epoch": 1,
+        "loss": 0.9870344886851852,
+        "train_acc": 0.5289672544080605
+      },
+      {
+        "epoch": 2,
+        "loss": 0.9661547750309672,
+        "train_acc": 0.5340050377833753
+      },
+      {
+        "epoch": 3,
+        "loss": 0.9312759331551848,
+        "train_acc": 0.5516372795969773
+      },
+      {
+        "epoch": 4,
+        "loss": 0.9239770085445279,
+        "train_acc": 0.5465994962216625
+      },
+      {
+        "epoch": 5,
+        "loss": 0.9043783713648241,
+        "train_acc": 0.5591939546599496
+      }
+    ],
+    "final_train_loss": 0.9043783713648241,
+    "final_train_acc": 0.5591939546599496
+  },
+  "evaluation": {
+    "test_accuracy": 0.47999998927116394,
+    "chance_baseline": 0.45,
+    "per_class_accuracy": {
+      "0": 0.9555555555555556,
+      "1": 0.0,
+      "2": 0.19230769230769232
+    }
+  },
+  "streaming": {
+    "n_windows": 97,
+    "n_packets": 300,
+    "wall_seconds": 30.90230727800008,
+    "windows_per_second": 3.138924195121705,
+    "packets_per_second": 9.70801297460321,
+    "end_to_end_ms": {
+      "p50": 2.3595579996253946,
+      "p95": 2.862474399626077,
+      "p99": 3.7936832801642573
+    },
+    "queue_wait_ms": {
+      "p50": 0.04349000028014416,
+      "p95": 0.06467000039265258,
+      "p99": 0.07378416048595678
+    },
+    "preprocess_ms": {
+      "p50": 1.6929290004554787,
+      "p95": 2.0964713996363553,
+      "p99": 2.8856763604926514
+    },
+    "inference_ms": {
+      "p50": 0.5941290000919253,
+      "p95": 0.7300687999304496,
+      "p99": 0.8801467203011257
+    },
+    "rss_mb_peak": 358.421875,
+    "cpu_percent_mean": 0.93,
+    "snapshots": [
+      {
+        "t": 2.103159866000169,
+        "windows_per_sec": 2.3773751490936816,
+        "packets_per_sec": 10.4604506560122,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.0
+      },
+      {
+        "t": 3.603833291000228,
+        "windows_per_sec": 3.331837504885384,
+        "packets_per_sec": 10.266845609201532,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 5.1035726210002395,
+        "windows_per_sec": 3.3339127006824327,
+        "packets_per_sec": 10.188940936400082,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 6.603566873999625,
+        "windows_per_sec": 3.3333461044947397,
+        "packets_per_sec": 10.146031876166898,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 8.102856984000027,
+        "windows_per_sec": 3.3349116136026935,
+        "packets_per_sec": 10.119887363422299,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 9.603245727000285,
+        "windows_per_sec": 3.332469683824561,
+        "packets_per_sec": 10.100751637259144,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 11.103430580999884,
+        "windows_per_sec": 3.3329225972850254,
+        "packets_per_sec": 10.086972596708412,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 12.603394267000112,
+        "windows_per_sec": 3.3334140330642903,
+        "packets_per_sec": 10.076650568055967,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 14.103143534000083,
+        "windows_per_sec": 3.3338906109297666,
+        "packets_per_sec": 10.068677217789363,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 15.602901164000286,
+        "windows_per_sec": 3.3338720203739323,
+        "packets_per_sec": 10.062231270312566,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 17.102820590000192,
+        "windows_per_sec": 3.3335123962854216,
+        "packets_per_sec": 10.056820691936993,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 18.602805614999852,
+        "windows_per_sec": 3.3333666114440934,
+        "packets_per_sec": 10.052247164761953,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 20.103489756000272,
+        "windows_per_sec": 3.331813713088743,
+        "packets_per_sec": 10.04800671185505,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 21.60339778100024,
+        "windows_per_sec": 3.3335377347555073,
+        "packets_per_sec": 10.044716215467142,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 23.10347138599991,
+        "windows_per_sec": 3.333169774693222,
+        "packets_per_sec": 10.041781000087537,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 24.60345076500016,
+        "windows_per_sec": 3.3333791584071917,
+        "packets_per_sec": 10.039242151811154,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 26.104196544999468,
+        "windows_per_sec": 3.331676868018454,
+        "packets_per_sec": 10.036700403644058,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 27.603115476999847,
+        "windows_per_sec": 3.335737439333868,
+        "packets_per_sec": 10.035099126068172,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.7
+      },
+      {
+        "t": 29.103106302000015,
+        "windows_per_sec": 3.3333537223465615,
+        "packets_per_sec": 10.033293249522758,
+        "rss_mb": 358.421875,
+        "cpu_percent": 1.3
+      },
+      {
+        "t": 30.902083459000096,
+        "windows_per_sec": 1.1117428546647798,
+        "packets_per_sec": 9.708083288236228,
+        "rss_mb": 358.421875,
+        "cpu_percent": 0.0
+      }
+    ],
+    "pushed_packets": 300,
+    "windows_decoded": 97,
+    "backend": "in-memory",
+    "concurrent_streams": 1,
+    "fs": 160,
+    "window_samples": 160,
+    "hop_samples": 40
+  },
+  "timings": {
+    "download_seconds": 3.976400057581486e-05
+  }
+}

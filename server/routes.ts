@@ -134,6 +134,26 @@ export async function registerRoutes(httpServer: Server, app: Express): Promise<
     res.json(data);
   });
 
+  // Streaming-pipeline benchmark (real EEG + synthetic scenarios).
+  app.get("/api/stream-benchmark", async (_req, res) => {
+    try {
+      const data = await loadJson("stream_benchmark.json");
+      res.json(data);
+    } catch {
+      res.status(404).json({ error: "stream_benchmark.json not found — run engine.scripts.stream_benchmark" });
+    }
+  });
+
+  // Real-EEG smoke test report.
+  app.get("/api/real-eeg-smoke", async (_req, res) => {
+    try {
+      const data = await loadJson("real_eeg_smoke.json");
+      res.json(data);
+    } catch {
+      res.status(404).json({ error: "real_eeg_smoke.json not found — run engine.scripts.real_eeg_smoke" });
+    }
+  });
+
   // Pipeline / architecture metadata.
   app.get("/api/architecture", async (_req, res) => {
     const data = await loadJson("architecture.json");
