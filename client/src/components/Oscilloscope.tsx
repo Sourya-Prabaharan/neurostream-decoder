@@ -179,26 +179,21 @@ export function Oscilloscope({
           {tk.t.toFixed(2)}s
         </text>
       ))}
-      <text
-        x={padding.left - 4}
-        y={padding.top + 8}
-        textAnchor="end"
-        fontSize="10"
-        fill="hsl(var(--muted-foreground))"
-        fontFamily="var(--font-mono)"
-      >
-        ch0
-      </text>
-      <text
-        x={padding.left - 4}
-        y={height - padding.bottom - 2}
-        textAnchor="end"
-        fontSize="10"
-        fill="hsl(var(--muted-foreground))"
-        fontFamily="var(--font-mono)"
-      >
-        ch{channels.length - 1}
-      </text>
+      {/* per-lane channel labels — one for every displayed trace */}
+      {lanes.map((lane, i) => (
+        <text
+          key={`lbl-${i}`}
+          x={padding.left - 6}
+          y={lane.y + 3}
+          textAnchor="end"
+          fontSize="10"
+          fill="hsl(var(--muted-foreground))"
+          fontFamily="var(--font-mono)"
+          data-testid={`text-osc-channel-${i}`}
+        >
+          ch{i}
+        </text>
+      ))}
     </svg>
   );
 }
