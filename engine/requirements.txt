@@ -1,0 +1,7 @@
+# NeuroStream Decoder — Python engine dependencies.
+# CPU PyTorch wheel works in sandboxed environments without a GPU. For
+# CUDA acceleration, install the GPU build matching your driver from
+# https://pytorch.org (e.g. torch --index-url https://download.pytorch.org/whl/cu121).
+torch>=2.0
+numpy>=1.24
+pytest>=7
