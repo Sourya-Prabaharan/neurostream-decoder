@@ -1,0 +1,423 @@
+{
+  "config": {
+    "concurrent_streams": 4,
+    "duration_s": 8.0,
+    "n_channels": 64,
+    "window_samples": 160,
+    "hop_samples": 40,
+    "model": "EEGNetSmall (1D CNN, 2 conv blocks)",
+    "model_param_count": 7923,
+    "torch_version": "2.11.0+cpu"
+  },
+  "scenarios": {
+    "real_1stream_160hz_realtime": {
+      "n_windows": 24,
+      "n_packets": 80,
+      "wall_seconds": 8.902960577999693,
+      "windows_per_second": 2.6957324801939415,
+      "packets_per_second": 8.985774933979805,
+      "end_to_end_ms": {
+        "p50": 2.290934000029665,
+        "p95": 4.013052950085693,
+        "p99": 4.184829530076968
+      },
+      "queue_wait_ms": {
+        "p50": 0.04223499990985147,
+        "p95": 0.05245579964139323,
+        "p99": 0.06299693959590513
+      },
+      "preprocess_ms": {
+        "p50": 1.60445899973638,
+        "p95": 2.883314099881318,
+        "p99": 2.9755378900699725
+      },
+      "inference_ms": {
+        "p50": 0.6151370002953627,
+        "p95": 0.9044850503414635,
+        "p99": 1.207830480252596
+      },
+      "rss_mb_peak": 241.58984375,
+      "cpu_percent_mean": 0.72,
+      "snapshots": [
+        {
+          "t": 2.1031668570003603,
+          "windows_per_sec": 2.3773672466155373,
+          "packets_per_sec": 10.460415885108365,
+          "rss_mb": 240.10546875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 3.603701758999705,
+          "windows_per_sec": 3.332145085954278,
+          "packets_per_sec": 10.26722034019548,
+          "rss_mb": 240.10546875,
+          "cpu_percent": 0.7
+        },
+        {
+          "t": 5.103412288000072,
+          "windows_per_sec": 3.3339767263838254,
+          "packets_per_sec": 10.189261040553278,
+          "rss_mb": 241.58984375,
+          "cpu_percent": 1.3
+        },
+        {
+          "t": 6.602956388999701,
+          "windows_per_sec": 3.334346750233549,
+          "packets_per_sec": 10.146969940861597,
+          "rss_mb": 241.58984375,
+          "cpu_percent": 0.7
+        },
+        {
+          "t": 8.902707405999536,
+          "windows_per_sec": 1.7393187220842035,
+          "packets_per_sec": 8.98603046822453,
+          "rss_mb": 241.58984375,
+          "cpu_percent": 0.9
+        }
+      ],
+      "pushed_packets": 80,
+      "windows_decoded": 24,
+      "backend": "in-memory",
+      "concurrent_streams": 1,
+      "fs": 160,
+      "window_samples": 160,
+      "hop_samples": 40
+    },
+    "synth_1stream_160hz_maxthroughput": {
+      "n_windows": 24,
+      "n_packets": 80,
+      "wall_seconds": 1.050369524999951,
+      "windows_per_second": 22.849101605457488,
+      "packets_per_second": 76.16367201819163,
+      "end_to_end_ms": {
+        "p50": 26.016607999736152,
+        "p95": 46.10349994991338,
+        "p99": 47.90926532999947
+      },
+      "queue_wait_ms": {
+        "p50": 24.21620349969089,
+        "p95": 44.264948050295054,
+        "p99": 46.00214702025369
+      },
+      "preprocess_ms": {
+        "p50": 1.575085000240506,
+        "p95": 1.7342250003366644,
+        "p99": 1.9236275097500766
+      },
+      "inference_ms": {
+        "p50": 0.28589949988599983,
+        "p95": 0.4035458002817904,
+        "p99": 0.5486283905520394
+      },
+      "rss_mb_peak": 241.01953125,
+      "cpu_percent_mean": 60.32000000000001,
+      "snapshots": [
+        {
+          "t": 0.01081540999985009,
+          "windows_per_sec": 462.3033246145365,
+          "packets_per_sec": 2034.1346283039604,
+          "rss_mb": 241.01953125,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 0.021303505999640038,
+          "windows_per_sec": 476.7309528917487,
+          "packets_per_sec": 1736.8033224496091,
+          "rss_mb": 241.01953125,
+          "cpu_percent": 95.3
+        },
+        {
+          "t": 0.03102124100041692,
+          "windows_per_sec": 514.5231887472004,
+          "packets_per_sec": 1676.2707848890097,
+          "rss_mb": 241.01953125,
+          "cpu_percent": 103.0
+        },
+        {
+          "t": 0.040803556999890134,
+          "windows_per_sec": 511.1264040406439,
+          "packets_per_sec": 1642.0137097405602,
+          "rss_mb": 241.01953125,
+          "cpu_percent": 102.3
+        },
+        {
+          "t": 1.0501571380000314,
+          "windows_per_sec": 3.962932390883785,
+          "packets_per_sec": 76.1790755927782,
+          "rss_mb": 241.01953125,
+          "cpu_percent": 1.0
+        }
+      ],
+      "pushed_packets": 80,
+      "windows_decoded": 24,
+      "backend": "in-memory",
+      "concurrent_streams": 1,
+      "fs": 160,
+      "window_samples": 160,
+      "hop_samples": 40
+    },
+    "synth_4streams_160hz_realtime": {
+      "n_windows": 96,
+      "n_packets": 320,
+      "wall_seconds": 8.902183004000108,
+      "windows_per_second": 10.783871771324332,
+      "packets_per_second": 35.94623923774777,
+      "end_to_end_ms": {
+        "p50": 4.607558000316203,
+        "p95": 10.790271250243677,
+        "p99": 12.762153949233834
+      },
+      "queue_wait_ms": {
+        "p50": 2.3156054999162734,
+        "p95": 8.429021500205636,
+        "p99": 9.00546900047629
+      },
+      "preprocess_ms": {
+        "p50": 1.6476904997944075,
+        "p95": 3.7927764999494684,
+        "p99": 4.370307049839535
+      },
+      "inference_ms": {
+        "p50": 0.37207049990684027,
+        "p95": 0.6010690001403418,
+        "p99": 1.0532210504152293
+      },
+      "rss_mb_peak": 243.33984375,
+      "cpu_percent_mean": 40.975,
+      "snapshots": [
+        {
+          "t": 2.103309007000462,
+          "windows_per_sec": 8.082502353871329,
+          "packets_per_sec": 40.41251176935664,
+          "rss_mb": 242.56640625,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 2.1057172299997546,
+          "windows_per_sec": 415.24393724903,
+          "packets_per_sec": 40.841191198312046,
+          "rss_mb": 242.56640625,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 2.107874147000075,
+          "windows_per_sec": 463.6247012988719,
+          "packets_per_sec": 41.27381140084589,
+          "rss_mb": 242.56640625,
+          "cpu_percent": 467.2
+        },
+        {
+          "t": 2.1098533670001416,
+          "windows_per_sec": 505.24954273217213,
+          "packets_per_sec": 41.70905967987779,
+          "rss_mb": 242.56640625,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 3.602979389000211,
+          "windows_per_sec": 11.385509159654314,
+          "packets_per_sec": 40.24447112927726,
+          "rss_mb": 242.56640625,
+          "cpu_percent": 3.3
+        },
+        {
+          "t": 3.6051700289999644,
+          "windows_per_sec": 456.48760184813653,
+          "packets_per_sec": 40.49739646828775,
+          "rss_mb": 242.56640625,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 3.607191144999888,
+          "windows_per_sec": 494.77615339141977,
+          "packets_per_sec": 40.75192971233704,
+          "rss_mb": 242.82421875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 3.6112542810005834,
+          "windows_per_sec": 246.11531581242207,
+          "packets_per_sec": 40.98299053009169,
+          "rss_mb": 242.82421875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 5.10273442900052,
+          "windows_per_sec": 11.39807326486837,
+          "packets_per_sec": 40.17453834848184,
+          "rss_mb": 242.82421875,
+          "cpu_percent": 2.7
+        },
+        {
+          "t": 5.105100753999977,
+          "windows_per_sec": 422.5962199737876,
+          "packets_per_sec": 40.35179909791079,
+          "rss_mb": 242.82421875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 5.107270551000511,
+          "windows_per_sec": 460.87260686329375,
+          "packets_per_sec": 40.530455148777826,
+          "rss_mb": 242.82421875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 5.111500824000359,
+          "windows_per_sec": 236.3913629299752,
+          "packets_per_sec": 40.692549441323415,
+          "rss_mb": 242.82421875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 6.602871539999796,
+          "windows_per_sec": 11.398909618932342,
+          "packets_per_sec": 40.13405355452488,
+          "rss_mb": 243.08203125,
+          "cpu_percent": 2.7
+        },
+        {
+          "t": 6.605846510000447,
+          "windows_per_sec": 336.13784333332507,
+          "packets_per_sec": 40.26736007221912,
+          "rss_mb": 243.08203125,
+          "cpu_percent": 341.9
+        },
+        {
+          "t": 6.6085944470005415,
+          "windows_per_sec": 363.909361810531,
+          "packets_per_sec": 40.40193450230312,
+          "rss_mb": 243.08203125,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 6.613515150000239,
+          "windows_per_sec": 203.2229947756264,
+          "packets_per_sec": 40.52307947007429,
+          "rss_mb": 243.08203125,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 8.901763073999973,
+          "windows_per_sec": 6.992249324117321,
+          "packets_per_sec": 35.94793495848561,
+          "rss_mb": 243.33984375,
+          "cpu_percent": 1.7
+        },
+        {
+          "t": 8.901967101000082,
+          "windows_per_sec": 0.0,
+          "packets_per_sec": 35.94711105639224,
+          "rss_mb": 243.33984375,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 8.902038486000492,
+          "windows_per_sec": 0.0,
+          "packets_per_sec": 35.9468227983105,
+          "rss_mb": 243.33984375,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 8.90209746399978,
+          "windows_per_sec": 0.0,
+          "packets_per_sec": 35.94658464413414,
+          "rss_mb": 243.33984375,
+          "cpu_percent": 0.0
+        }
+      ],
+      "backend": "in-memory",
+      "concurrent_streams": 4,
+      "fs": 160,
+      "window_samples": 160,
+      "hop_samples": 40
+    },
+    "synth_1stream_256hz_realtime": {
+      "n_windows": 30,
+      "n_packets": 64,
+      "wall_seconds": 8.87773488000039,
+      "windows_per_second": 3.3792403586621504,
+      "packets_per_second": 7.209046098479255,
+      "end_to_end_ms": {
+        "p50": 2.23766000044634,
+        "p95": 2.516895499638848,
+        "p99": 2.792451729428649
+      },
+      "queue_wait_ms": {
+        "p50": 0.04112350006835186,
+        "p95": 0.05511319936886135,
+        "p99": 0.06191113999193476
+      },
+      "preprocess_ms": {
+        "p50": 1.5802020002411155,
+        "p95": 1.855669449469132,
+        "p99": 2.01722215958398
+      },
+      "inference_ms": {
+        "p50": 0.5708515000151237,
+        "p95": 0.6185207999806152,
+        "p99": 0.7031660098346039
+      },
+      "rss_mb_peak": 244.88671875,
+      "cpu_percent_mean": 0.6857142857142857,
+      "snapshots": [
+        {
+          "t": 1.503088684999966,
+          "windows_per_sec": 3.3264836931429054,
+          "packets_per_sec": 8.648857602171553,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 0.0
+        },
+        {
+          "t": 2.752649121000104,
+          "windows_per_sec": 4.001407099607824,
+          "packets_per_sec": 8.355587286636643,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 0.8
+        },
+        {
+          "t": 4.0028465189998315,
+          "windows_per_sec": 3.999368426138006,
+          "packets_per_sec": 8.244133229531249,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 0.8
+        },
+        {
+          "t": 5.2525361779999,
+          "windows_per_sec": 4.000993337818541,
+          "packets_per_sec": 8.186521433227684,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 1.6
+        },
+        {
+          "t": 6.50316650700006,
+          "windows_per_sec": 3.9979839638123487,
+          "packets_per_sec": 8.14987590167811,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 0.8
+        },
+        {
+          "t": 7.753338843000165,
+          "windows_per_sec": 3.999448600820407,
+          "packets_per_sec": 8.125531629109359,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 0.8
+        },
+        {
+          "t": 8.877496398999938,
+          "windows_per_sec": 0.0,
+          "packets_per_sec": 7.2092397589944035,
+          "rss_mb": 244.88671875,
+          "cpu_percent": 0.0
+        }
+      ],
+      "pushed_packets": 64,
+      "windows_decoded": 30,
+      "backend": "in-memory",
+      "concurrent_streams": 1,
+      "fs": 256,
+      "window_samples": 160,
+      "hop_samples": 40
+    }
+  }
+}

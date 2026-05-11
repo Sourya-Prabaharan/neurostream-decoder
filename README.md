@@ -223,6 +223,49 @@ benchmark JSON.
 
 ---
 
+## Public site (GitHub Pages, static mode)
+
+The React dashboard under `client/` is also deployable as a fully
+static site to GitHub Pages — no Express server, no Python runtime.
+`.github/workflows/pages.yml` runs `npm ci && npm run build`, copies
+the benchmark JSON artifacts from `data/` into `client/public/data/`,
+and publishes `dist/public`.
+
+What the static site does and does not do:
+
+* The dashboard uses hash routing (`/#/system`, `/#/benchmark`, …) so
+  GitHub Pages serves the same `index.html` for every route.
+* `client/src/lib/queryClient.ts` tries each `/api/<name>` endpoint
+  first and, on any non-OK response or network error, falls back to a
+  checked-in JSON file under `<base>/data/<name>.json`. The same code
+  works locally against the Express server and on Pages without it.
+* The EEG stream view (`/#/`) is browser-simulated in both modes —
+  the live oscilloscope, latency chart and queue indicators come from
+  the in-browser generator described in `client/src/pages/eeg.tsx`.
+  Latency reference values are read from
+  `data/real_eeg_smoke.json`, which is produced by
+  `python -m engine.scripts.real_eeg_smoke` against the real
+  PhysioNet recording.
+* The benchmark and system-metrics tabs read
+  `data/stream_benchmark.json` and `data/real_eeg_smoke.json`
+  directly. To refresh the public site with new numbers, re-run the
+  benchmark locally, commit the updated `data/*.json`, and push to
+  `main`.
+* The real FastAPI ingest path
+  (`engine/neurostream/streaming_api/app.py`) and the Express demo
+  server (`server/index.ts`) are not deployed to Pages; they remain
+  the supported way to drive the pipeline with live packets.
+
+To preview the static build locally:
+
+```bash
+npm run build
+npx serve dist/public -l 4173
+# open http://localhost:4173/
+```
+
+---
+
 ## Repository layout
 
 ```

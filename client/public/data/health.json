@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "device": {
+    "device": "cpu",
+    "cuda_available": false,
+    "cuda_device_count": 0,
+    "cuda_device_name": null,
+    "torch_version": "2.11.0+cpu",
+    "python_version": "3.12.8",
+    "mixed_precision": false
+  },
+  "n_sessions": 3,
+  "static": true
+}

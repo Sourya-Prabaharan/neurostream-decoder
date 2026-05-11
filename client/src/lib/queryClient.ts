@@ -2,6 +2,28 @@ import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
 const API_BASE = "__PORT_5000__".startsWith("__") ? "" : "__PORT_5000__";
 
+// Static JSON fallbacks for endpoints that ship a checked-in artifact under
+// client/public/data. Used when no Express backend is reachable (e.g. when
+// the dashboard is served as a static site from GitHub Pages).
+// Map: API path → JSON file name relative to <base>/data/.
+const STATIC_FALLBACKS: Record<string, string> = {
+  "/api/sessions": "sessions.json",
+  "/api/benchmark": "benchmark.json",
+  "/api/stream-benchmark": "stream_benchmark.json",
+  "/api/real-eeg-smoke": "real_eeg_smoke.json",
+  "/api/architecture": "architecture.json",
+  "/api/health": "health.json",
+};
+
+// Vite injects BASE_URL from vite.config.ts (base: "./"). Anchor to the
+// document base so the same code works at the repo root and under a
+// GitHub Pages subpath. Falls back to "./" if BASE_URL is unset.
+function staticDataUrl(file: string): string {
+  const base = (import.meta as any).env?.BASE_URL ?? "./";
+  const prefix = base.endsWith("/") ? base : `${base}/`;
+  return `${prefix}data/${file}`;
+}
+
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
@@ -24,20 +46,37 @@ export async function apiRequest(
   return res;
 }
 
+async function fetchStaticFallback(apiPath: string): Promise<any | undefined> {
+  const file = STATIC_FALLBACKS[apiPath];
+  if (!file) return undefined;
+  const res = await fetch(staticDataUrl(file));
+  if (!res.ok) return undefined;
+  return res.json();
+}
+
 type UnauthorizedBehavior = "returnNull" | "throw";
 export const getQueryFn: <T>(options: {
   on401: UnauthorizedBehavior;
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(`${API_BASE}${queryKey.join("/")}`);
-
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
-      return null;
+    const apiPath = queryKey.join("/");
+    try {
+      const res = await fetch(`${API_BASE}${apiPath}`);
+      if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+        return null;
+      }
+      if (!res.ok) {
+        const fallback = await fetchStaticFallback(apiPath);
+        if (fallback !== undefined) return fallback;
+        await throwIfResNotOk(res);
+      }
+      return await res.json();
+    } catch (err) {
+      const fallback = await fetchStaticFallback(apiPath);
+      if (fallback !== undefined) return fallback;
+      throw err;
     }
-
-    await throwIfResNotOk(res);
-    return await res.json();
   };
 
 export const queryClient = new QueryClient({
