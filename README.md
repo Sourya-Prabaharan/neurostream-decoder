@@ -8,6 +8,22 @@ confidence and 2-D cursor visualisation.
 Built as a deployable student / research demo. Everything in this repo runs end
 to end on CPU. PyTorch automatically uses CUDA when a GPU is visible.
 
+## Why this project matters
+
+Most student BCI demos stop at offline EEG classification. NeuroStream Decoder is
+instead built around the systems problem that makes real neural interfaces hard:
+turning noisy, high-rate neural streams into useful outputs under tight latency
+constraints. The project demonstrates a complete decoding stack with streaming
+state, GPU-aware tensor execution, reproducible synthetic sessions, live
+telemetry, and a deployable dashboard that can be shown without special
+hardware.
+
+For a concise pitch, live walkthrough, and resume bullets, see:
+
+* [docs/project_pitch.md](docs/project_pitch.md)
+* [docs/demo_script.md](docs/demo_script.md)
+* [docs/resume_portfolio.md](docs/resume_portfolio.md)
+
 ```
 neurostream-decoder/
 ├── engine/                    Python neural decoding engine
@@ -175,8 +191,10 @@ Loader sketches live in [docs/architecture.md](docs/architecture.md).
 ## Tests
 
 ```
-$ pytest engine/tests -v
-============================ 14 passed in 3.42s ============================
+pytest engine/tests -v
+============================ 14 passed ============================
+npm run check
+npm run build
 ```
 
 Coverage:
@@ -241,3 +259,14 @@ production server.
 The dashboard uses hash-based routing (`#/`, `#/architecture`,
 `#/benchmark`) so it works under deployed iframe constraints out of the
 box.
+
+---
+
+## Repository hygiene
+
+This repo includes:
+
+* `.github/workflows/ci.yml` for Python tests, TypeScript checking, and
+  production web builds.
+* `CONTRIBUTING.md` with a short development checklist.
+* `LICENSE` under MIT terms so the project can be shared publicly.

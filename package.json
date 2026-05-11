@@ -1,6 +1,7 @@
 {
-  "name": "rest-express",
-  "version": "1.0.0",
+  "name": "neurostream-decoder",
+  "version": "0.1.0",
+  "description": "Real-time neural signal decoding engine with a CUDA-aware PyTorch pipeline and live research dashboard.",
   "license": "MIT",
   "type": "module",
   "scripts": {
