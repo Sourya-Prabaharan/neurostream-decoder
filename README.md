@@ -15,6 +15,8 @@ Source: <https://physionet.org/content/eegmmidb/1.0.0/>
 
 ---
 
+[Public dashboard](https://sourya-prabaharan.github.io/neurostream-decoder/) — browser-simulated EEG with saved benchmark artifacts, not a live Python backend. The page responded successfully during this audit.
+
 ## Scope
 
 In scope:
@@ -70,7 +72,7 @@ Data flow per window:
    backend is reported in every benchmark output. In this sandbox the
    in-memory backend is used and the JSON records it as such.
 3. **Buffering.** Packets are written into a per-stream `RingBuffer`
-   sized to ~50 s of audio at 160 Hz (8000 samples). Writes are O(T)
+   sized to ~50 s of EEG at 160 Hz (8000 samples). Writes are O(T)
    and lock-protected. If the producer outruns the consumer, the oldest
    unread samples are overwritten and counted in `stats().overruns`.
 4. **Windowing.** A sliding window of 1.0 s (160 samples) with a
@@ -140,8 +142,7 @@ The smoke script:
 4. Streams the first 30 s of the recording back through the async
    pipeline in real-time mode and records metrics.
 
-Honest test-accuracy numbers from a representative run on this
-sandbox:
+Recorded test-accuracy numbers from the existing smoke run:
 
 | Metric | Value |
 | --- | --- |
@@ -150,7 +151,7 @@ sandbox:
 | CNN test accuracy (subject 1 run 3, 6 epochs) | ~0.48–0.55 |
 | Final training loss | ~0.90 |
 
-This is not a state-of-the-art motor-imagery accuracy — it's a single
+Overlapping windows are randomly split and can share samples across train/test. This smoke result is not an independent generalization estimate. This is not a state-of-the-art motor-imagery accuracy — it's a single
 subject, 6 epochs, no subject calibration, no augmentation. The point
 of the smoke is to verify the full path: real EDF → ring buffer →
 preprocessing → CNN → metrics, with honest engineering numbers
@@ -173,7 +174,7 @@ scenarios on the in-memory stream backend:
 3. `synth_{N}streams_160hz_realtime` – N concurrent streams, paced.
 4. `synth_1stream_256hz_realtime` – higher source rate, paced.
 
-Representative numbers from this sandbox (Linux x86_64, CPU only,
+Saved numbers from the original environment (Linux x86_64, CPU only,
 `torch==2.11.0+cpu`, 64 channels, 1.0 s window, 250 ms hop):
 
 | Scenario | windows/s | e2e p50 | e2e p95 | e2e p99 | inference p50 | RSS peak |
@@ -182,6 +183,8 @@ Representative numbers from this sandbox (Linux x86_64, CPU only,
 | synth 1 stream, 160 Hz, max-throughput | 22.6 | 33.07 ms | 58.93 ms | 60.72 ms | 0.36 ms | 241 MB |
 | synth 4 streams, 160 Hz, realtime | 10.8 | 4.56 ms | 12.44 ms | 13.96 ms | 0.41 ms | 244 MB |
 | synth 1 stream, 256 Hz, realtime | 2.7 | 2.29 ms | 3.27 ms | 3.70 ms | 0.61 ms | 245 MB |
+
+The original CPU model and thread configuration are not recorded, so these are reference measurements rather than a portable performance guarantee. Inspect [raw benchmark output](data/stream_benchmark.json) and [real EEG smoke output](data/real_eeg_smoke.json). Record your CPU, OS, Python/PyTorch versions, thread count, and transport when rerunning the commands above. CUDA support is unmeasured.
 
 Charts under `docs/assets/`:
 
@@ -304,9 +307,15 @@ client/                           React dashboard
 
 ## Installation
 
+Use Python 3.11+ with a compatible PyTorch wheel. No GPU is required.
+
 ```bash
-pip install -r engine/requirements.txt
-npm install   # only needed for the dashboard
+git clone https://github.com/Sourya-Prabaharan/neurostream-decoder.git
+cd neurostream-decoder
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r engine/requirements.txt
+npm ci   # Node.js 22; only needed for the dashboard
 ```
 
 `pyedflib`, `psutil`, `fastapi`, `matplotlib` are pulled in by
